@@ -12,6 +12,9 @@
 		1632E2F521F0010000D97587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632E2F321F0010000D97587 /* Main.storyboard */; };
 		1632E2F721F0010100D97587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1632E2F621F0010100D97587 /* Assets.xcassets */; };
 		1632E2FA21F0010100D97587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632E2F821F0010100D97587 /* LaunchScreen.storyboard */; };
+		1632E30321F0057100D97587 /* PINCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1632E30221F0057100D97587 /* PINCache.framework */; };
+		1632E30521F0057600D97587 /* PINOperation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1632E30421F0057600D97587 /* PINOperation.framework */; };
+		1632E30721F0057A00D97587 /* PINRemoteImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1632E30621F0057A00D97587 /* PINRemoteImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		1632E2F621F0010100D97587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1632E2F921F0010100D97587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1632E2FB21F0010100D97587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1632E30221F0057100D97587 /* PINCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PINCache.framework; path = Carthage/Build/iOS/PINCache.framework; sourceTree = "<group>"; };
+		1632E30421F0057600D97587 /* PINOperation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PINOperation.framework; path = Carthage/Build/iOS/PINOperation.framework; sourceTree = "<group>"; };
+		1632E30621F0057A00D97587 /* PINRemoteImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PINRemoteImage.framework; path = Carthage/Build/iOS/PINRemoteImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1632E30321F0057100D97587 /* PINCache.framework in Frameworks */,
+				1632E30521F0057600D97587 /* PINOperation.framework in Frameworks */,
+				1632E30721F0057A00D97587 /* PINRemoteImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,7 @@
 			children = (
 				1632E2EE21F0010000D97587 /* Issue487 */,
 				1632E2ED21F0010000D97587 /* Products */,
+				1632E30121F0057100D97587 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +74,16 @@
 			path = Issue487;
 			sourceTree = "<group>";
 		};
+		1632E30121F0057100D97587 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1632E30621F0057A00D97587 /* PINRemoteImage.framework */,
+				1632E30421F0057600D97587 /* PINOperation.framework */,
+				1632E30221F0057100D97587 /* PINCache.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +94,7 @@
 				1632E2E821F0010000D97587 /* Sources */,
 				1632E2E921F0010000D97587 /* Frameworks */,
 				1632E2EA21F0010000D97587 /* Resources */,
+				1632E30821F005B500D97587 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,6 +150,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1632E30821F005B500D97587 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/PINCache.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PINOperation.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PINRemoteImage.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PINCache.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PINOperation.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PINRemoteImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1632E2E821F0010000D97587 /* Sources */ = {
@@ -283,6 +330,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Issue487/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +351,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Issue487/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
